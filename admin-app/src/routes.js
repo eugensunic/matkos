@@ -211,6 +211,15 @@ var routes = [
     admin: false
   },
   {
+    path: '/list',
+    name: 'List',
+    icon: 'ni ni-tv-2 text-primary',
+    component: Cuisines,
+    layout: '/cuisine',
+    appearInSidebar: false,
+    admin: false
+  },
+  {
     path: '/dashboard',
     name: 'Dashboard',
     icon: DashboardIcon,
