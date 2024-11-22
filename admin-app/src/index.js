@@ -31,7 +31,7 @@ function Main() {
   const wsLink = new WebSocketLink({
     uri: `${WS_SERVER_URL}/graphql`,
     options: {
-      reconnect: true
+      reconnect: false
     }
   })
   const request = async operation => {
