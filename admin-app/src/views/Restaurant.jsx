@@ -27,7 +27,7 @@ const Restaurant = props => {
   const { data, error: errorQuery, loading: loadingQuery } = useQuery(
     RESTAURANT_BY_OWNER,
     {
-      variables: { id: vendorId }
+      variables: { id: "673f57d52bf87ef3c14839c8" }
     }
   )
   const links =
@@ -77,6 +77,7 @@ const Restaurant = props => {
           <Button
             variant="contained"
             onClick={() => {
+              console.log('Add new restaurant',data.restaurantByOwner._id);
               setOwner(data.restaurantByOwner._id)
               toggleModal()
             }}

@@ -6,6 +6,7 @@ import { Box } from '@mui/material'
 import routes from '../routes'
 
 function Auth() {
+  console.log("auth here")
   useEffect(() => {
     document.body.classList.add('bg-default')
     return () => {

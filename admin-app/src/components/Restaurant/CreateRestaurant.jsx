@@ -246,10 +246,13 @@ const CreateRestaurant = props => {
     )
   }
   function update(cache, { data: { createRestaurant } }) {
+    console.log('data', cache, cache);
     const { restaurantByOwner } = cache.readQuery({
       query: RESTAURANT_BY_OWNER,
       variables: { id: owner }
     })
+
+    console.log('restaurantByOwner', restaurantByOwner)
     cache.writeQuery({
       query: RESTAURANT_BY_OWNER,
       variables: { id: owner },
@@ -616,10 +619,16 @@ const CreateRestaurant = props => {
                         username,
                         password,
                         shopType,
-                        cuisines: restaurantCuisines
-                      }
-                    }
+                        cuisines: restaurantCuisines,
+                        tax: 0.25, // Add tax field
+                        phone:"0915110639",
+                        location: { // Add location field
+                          coordinates: [16.4402, 43.5081], // Replace with actual longitude and latitude
+                        },
+                      },
+                    },
                   })
+                  
                 }
               }}>
               {t('Save')}
