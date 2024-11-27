@@ -203,6 +203,7 @@ function Addon(props) {
         addon.quantityMaximumError ||
         addon.optionsError
     )
+    console.log('error', error);
     if (!error.length) return true
     return false
   }
