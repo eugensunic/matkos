@@ -50,9 +50,9 @@ import { calculateDistance, calculateAmount } from "../../utils/customFunction";
 import useStyle from "./styles";
 
 import Analytics from "../../utils/analytics";
-import { GoogleMap, Marker } from "@react-google-maps/api";
-import { mapStyles } from "../OrderDetail/mapStyles";
-import RestMarker from "../../assets/images/rest-map-2.png";
+// import { GoogleMap, Marker } from "@react-google-maps/api";
+// import { mapStyles } from "../OrderDetail/mapStyles";
+// import RestMarker from "../../assets/images/rest-map-2.png";
 import NearMeIcon from "@mui/icons-material/NearMe";
 import clsx from "clsx";
 
@@ -154,13 +154,13 @@ function Checkout() {
     })();
   }, [data, location]);
 
-  const onLoad = useCallback(
-    (map) => {
-      const bounds = new window.google.maps.LatLngBounds();
-      map.panToBounds(bounds);
-    },
-    [restCoordinates]
-  );
+  // const onLoad = useCallback(
+  //   (map) => {
+  //     const bounds = new window.google.maps.LatLngBounds();
+  //     map.panToBounds(bounds);
+  //   },
+  //   [restCoordinates]
+  // );
 
   const isOpen = () => {
     const date = new Date();
@@ -530,7 +530,7 @@ function Checkout() {
       >
         <Grid container item>
           <Grid item xs={12} className={classes.topContainer}>
-            <GoogleMap
+            {/* <GoogleMap
               mapContainerStyle={{
                 height: "450px",
                 width: "100%",
@@ -556,7 +556,7 @@ function Checkout() {
                 />
               )}
               <Marker position={restCoordinates} icon={RestMarker} />
-            </GoogleMap>
+            </GoogleMap> */}
           </Grid>
         </Grid>
         <Container maxWidth="md" className={classes.containerCard}>

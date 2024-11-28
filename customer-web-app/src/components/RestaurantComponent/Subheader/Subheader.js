@@ -136,7 +136,7 @@ function Subheader() {
         className={`${classes.root} ${classes.shadow} ${classes.mainContainer}`}
       >
         <FlashMessage alertMessage={alertMessage} open={open} setOpen={setOpen} />
-        <Grid container>
+        {/* <Grid container>
           <Grid item xs={12}>
             <Button
               style={{
@@ -183,7 +183,7 @@ function Subheader() {
               </Box>
             </Button>
           </Grid>
-        </Grid>
+        </Grid> */}
         {expand && (
           <>
             <Box

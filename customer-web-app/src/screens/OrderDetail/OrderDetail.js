@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { GoogleMap, Marker } from "@react-google-maps/api";
+// import { GoogleMap, Marker } from "@react-google-maps/api";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
@@ -26,14 +26,14 @@ import Analytics from "../../utils/analytics";
 import { ORDER_STATUS } from "../../utils/constantValues";
 import Background from "./Background";
 import useStyles from "./styles";
-import { mapStyles } from "./mapStyles";
+// import { mapStyles } from "./mapStyles";
 import { useLocationContext } from "../../context/Location";
 import Promotion from "../../components/Promotion/Promotion";
 import { Chat } from "../../components/Chat";
-import RestMarker from "../../assets/images/rest-map-2.png";
-import DestMarker from "../../assets/images/dest-map-2.png";
-import MarkerImage from "../../assets/images/marker.png";
-import TrackingRider from "../../components/Orders/OrderDetail/TrackingRider";
+// import RestMarker from "../../assets/images/rest-map-2.png";
+// import DestMarker from "../../assets/images/dest-map-2.png";
+// import MarkerImage from "../../assets/images/marker.png";
+// import TrackingRider from "../../components/Orders/OrderDetail/TrackingRider";
 import { useSubscription } from "@apollo/client";
 import { subscriptionOrder } from "../../apollo/server";
 import gql from "graphql-tag";
@@ -122,16 +122,16 @@ function OrderDetail() {
     { variables: { id } }
   );
 
-  const onLoad = useCallback(
-    (map) => {
-      const bounds = new window.google.maps.LatLngBounds();
-      bounds.extend(restCoordinates);
-      bounds.extend(destCoordinates);
-      map.fitBounds(bounds);
-      map.panToBounds(bounds);
-    },
-    [restCoordinates, destCoordinates]
-  );
+  // const onLoad = useCallback(
+  //   (map) => {
+  //     const bounds = new window.google.maps.LatLngBounds();
+  //     bounds.extend(restCoordinates);
+  //     bounds.extend(destCoordinates);
+  //     map.fitBounds(bounds);
+  //     map.panToBounds(bounds);
+  //   },
+  //   [restCoordinates, destCoordinates]
+  // );
 
   const { loadingOrders, errorOrders, orders, clearCart } =
     useContext(UserContext);
@@ -194,7 +194,7 @@ function OrderDetail() {
             <Grid container item>
               {!["CANCELLED"].includes(order.orderStatus) && (
                 <Grid item xs={12} className={classes.topContainer}>
-                  <GoogleMap
+                  {/* <GoogleMap
                     mapContainerStyle={{
                       height: small ? "450px" : "500px",
                       width: "100%",
@@ -222,7 +222,7 @@ function OrderDetail() {
                     <Marker position={restCoordinates} icon={RestMarker} />
                     <Marker position={destCoordinates} icon={DestMarker} />
                     {order.rider && <TrackingRider id={order.rider._id} />}
-                  </GoogleMap>
+                  </GoogleMap> */}
 
                   <Container
                     disableGutters

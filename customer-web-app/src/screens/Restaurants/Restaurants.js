@@ -23,7 +23,7 @@ import {
   Subheader,
 } from "../../components/RestaurantComponent";
 
-import SearchContainer from "../../components/HomeScreen/SearchContainer/SearchContainer";
+// import SearchContainer from "../../components/HomeScreen/SearchContainer/SearchContainer";
 import { useLocationContext } from "../../context/Location";
 import UserContext from "../../context/User";
 import Analytics from "../../utils/analytics";
@@ -157,7 +157,7 @@ function Restaurants() {
       />
       {isLoggedIn ? <Header /> : <LoginHeader showIcon />}
       <Subheader />
-      <Box className={classes.searchWrapper}>
+      {/* <Box className={classes.searchWrapper}>
         <Grid container item>
           <SearchContainer
             loading={loading}
@@ -166,7 +166,7 @@ function Restaurants() {
             setSearch={setSearch}
           />
         </Grid>
-      </Box>
+      </Box> */}
       {activeOrders.length > 0 ? (
         <Box
           style={{
