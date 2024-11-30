@@ -1,37 +1,41 @@
 import {
   ApolloClient,
   ApolloLink,
-  concat,
-  createHttpLink,
+  HttpLink,
   InMemoryCache,
   Observable,
   split,
 } from "@apollo/client";
 import { getMainDefinition } from "@apollo/client/utilities";
-import { WebSocketLink } from "@apollo/client/link/ws";
+import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
+import { createClient } from "graphql-ws";
 import ConfigurableValues from "../config/constants";
 
 const setupApollo = () => {
   const { SERVER_URL, WS_SERVER_URL } = ConfigurableValues();
   const cache = new InMemoryCache();
-  const httpLink = createHttpLink({
+
+  // HTTP Link for Queries and Mutations
+  const httpLink = new HttpLink({
     uri: `${SERVER_URL}graphql`,
   });
 
-  const wsLink = new WebSocketLink({
-    uri: `${WS_SERVER_URL}graphql`,
-    options: {
-      reconnect: true,
-    },
-  });
+  // WebSocket Link for Subscriptions
+  const wsLink = new GraphQLWsLink(
+    createClient({
+      url: `${WS_SERVER_URL}graphql`, // WebSocket URL
+      connectionParams: () => {
+        const token = localStorage.getItem("token");
+        return {
+          Authorization: token ? `Bearer ${token}` : "",
+        };
+      },
+    })
+  );
 
+  // Request Middleware for Authorization
   const request = async (operation) => {
-    const data = localStorage.getItem("token");
-
-    let token = null;
-    if (data) {
-      token = data;
-    }
+    const token = localStorage.getItem("token");
     operation.setContext({
       headers: {
         authorization: token ? `Bearer ${token}` : "",
@@ -60,13 +64,19 @@ const setupApollo = () => {
       })
   );
 
-  const terminatingLink = split(({ query }) => {
-    const { kind, operation } = getMainDefinition(query);
-    return kind === "OperationDefinition" && operation === "subscription";
-  }, wsLink);
+  // Split Link: Route Subscriptions to WebSocket and Others to HTTP
+  const splitLink = split(
+    ({ query }) => {
+      const { kind, operation } = getMainDefinition(query);
+      return kind === "OperationDefinition" && operation === "subscription";
+    },
+    wsLink, // WebSocket for subscriptions
+    httpLink // HTTP for queries and mutations
+  );
 
+  // Apollo Client Instance
   const client = new ApolloClient({
-    link: concat(ApolloLink.from([terminatingLink, requestLink]), httpLink),
+    link: ApolloLink.from([requestLink, splitLink]),
     cache,
     resolvers: {},
     connectToDevTools: true,
