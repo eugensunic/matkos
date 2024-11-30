@@ -13,17 +13,18 @@ import ConfigurableValues from "../config/constants";
 
 const setupApollo = () => {
   const { SERVER_URL, WS_SERVER_URL } = ConfigurableValues();
+  console.log("Server URL: ", SERVER_URL, WS_SERVER_URL);
   const cache = new InMemoryCache();
 
   // HTTP Link for Queries and Mutations
   const httpLink = new HttpLink({
-    uri: `${SERVER_URL}graphql`,
+    uri: `${SERVER_URL}/graphql`,
   });
 
   // WebSocket Link for Subscriptions
   const wsLink = new GraphQLWsLink(
     createClient({
-      url: `${WS_SERVER_URL}graphql`, // WebSocket URL
+      url: `${WS_SERVER_URL}/graphql`, // WebSocket URL
       connectionParams: () => {
         const token = localStorage.getItem("token");
         return {
@@ -36,6 +37,7 @@ const setupApollo = () => {
   // Request Middleware for Authorization
   const request = async (operation) => {
     const token = localStorage.getItem("token");
+    console.log("token: ", token);
     operation.setContext({
       headers: {
         authorization: token ? `Bearer ${token}` : "",

@@ -2,7 +2,7 @@ import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider, StyledEngineProvider } from "@mui/material";
 import React from "react";
 import ReactDOM from "react-dom";
-import setupAplloClient from "./apollo/index";
+import setupApolloClient from "./apollo/index";
 import App from "./App";
 import   {
   ConfigurationProvider,
@@ -17,7 +17,8 @@ import theme from "./utils/theme";
 function Main() {
  
 
-  const client = setupAplloClient();
+  const client = setupApolloClient();
+  console.log("Client: ", client);
   return (
     <ApolloProvider client={client}>
       <ConfigurationProvider>

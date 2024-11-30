@@ -45,7 +45,8 @@ function Footer() {
 
   return (
     <Grid container alignItems="center">
-      <Grid
+      Footer...
+      {/* <Grid
         item
         xs={12}
         md={2.5}
@@ -249,7 +250,7 @@ function Footer() {
         >
           {t("footerEndText")}
         </Typography>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }

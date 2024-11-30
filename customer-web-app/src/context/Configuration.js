@@ -25,6 +25,8 @@ export const ConfigurationProvider = ({ children }) => {
     let configuration =
       loading || error || !data.configuration ? {} : data.configuration;
 
+    console.log("Configuration fetched: ", configuration);
+
     setConfiguration(configuration);
   };
 
