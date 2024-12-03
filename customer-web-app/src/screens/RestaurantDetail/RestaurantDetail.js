@@ -64,6 +64,8 @@ function RestaurantDetail() {
     ...c,
     index,
   }));
+  console.log(data?.restaurant);
+  console.log(data?.restaurant?.deliveryCharges);
   const headerData = {
     name: data?.restaurant?.name ?? "...",
     averageReview: data?.restaurant?.reviewData.ratings ?? "...",
@@ -144,6 +146,7 @@ function RestaurantDetail() {
   };
 
   const addToCart = async (food, clearFlag) => {
+    console.log("food variation", food.variations)
     if (
       food.variations.length === 1 &&
       food.variations[0].addons.length === 0
@@ -240,7 +243,7 @@ function RestaurantDetail() {
         style={{
           backgroundColor: theme.palette.grey[200],
           scrollBehavior: "smooth",
-          marginTop:'20px',
+          marginTop: '20px',
         }}
       >
         <Grid container>
@@ -281,7 +284,7 @@ function RestaurantDetail() {
                       color: theme.palette.common.white,
                       borderRadius: 20,
                       padding: 2,
-                      marginTop:5,
+                      marginTop: 5,
                     }}
                   />
                 </Button>

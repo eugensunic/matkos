@@ -31,6 +31,7 @@ function CartView(props) {
   } = useContext(UserContext);
   const { data } = useRestaurant(cartRestaurant);
   const restaurantData = data?.restaurant ?? null;
+  console.log("resdata",restaurantData);
 
   useEffect(() => {
     if (restaurantData) didFocus();
