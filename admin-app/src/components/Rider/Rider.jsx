@@ -395,7 +395,9 @@ function Rider(props) {
                 })
                 // Close the modal after 3 seconds by calling the parent's onClose callback
                 setTimeout(() => {
+                  if (props && typeof props.onClose === 'function') {
                   props.onClose() // Close the modal
+                  }
                 }, 4000)
               }
             }}>

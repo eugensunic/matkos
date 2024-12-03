@@ -178,7 +178,9 @@ const CreateRestaurant = props => {
   }
 
   const handleCloseModal = () => {
+    if (props && typeof props.onClose === 'function') {
     props.onClose() // Update state to close modal
+    }
   };
 
   const onSubmitValidaiton = data => {

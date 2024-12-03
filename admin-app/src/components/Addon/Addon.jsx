@@ -203,7 +203,7 @@ function Addon(props) {
         addon.quantityMaximumError ||
         addon.optionsError
     )
-    console.log('error', error);
+    console.log('error', error)
     if (!error.length) return true
     return false
   }
@@ -422,7 +422,9 @@ function Addon(props) {
                     })
                 // Close the modal after 3 seconds by calling the parent's onClose callback
                 setTimeout(() => {
-                  props.onClose() // Close the modal
+                  if (props && typeof props.onClose === 'function') {
+                    props.onClose() // Close the modal
+                  }
                 }, 4000)
               }
             }}>

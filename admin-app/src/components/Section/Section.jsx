@@ -199,7 +199,9 @@ function Section(props) {
                   clearFields()
                   // Close the modal after 3 seconds
                   setTimeout(() => {
+                    if (props && typeof props.onClose === 'function') {
                     props.onClose() // Close the modal
+                    }
                   }, 4000)
                 }
               }}>
