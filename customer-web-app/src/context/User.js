@@ -54,7 +54,7 @@ export const UserProvider = (props) => {
     onCompleted,
     onError,
   });
-
+  console.log('am here')
   const [
     fetchOrders,
     {
@@ -81,7 +81,7 @@ export const UserProvider = (props) => {
     (async () => {
       isSubscribed && setIsLoading(true);
       isSubscribed && (await fetchProfile());
-      isSubscribed && (await fetchOrders());
+      // isSubscribed && (await fetchOrders());
       isSubscribed && setIsLoading(false);
     })();
     return () => {
@@ -304,7 +304,7 @@ export const UserProvider = (props) => {
         loadingOrders: loadingOrders && calledOrders,
         errorOrders,
         orders: dataOrders && dataOrders.orders ? dataOrders.orders : [],
-        fetchOrders,
+        // fetchOrders,
         fetchMoreOrdersFunc,
         networkStatusOrders,
         cart,

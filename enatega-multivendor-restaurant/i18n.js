@@ -3,12 +3,7 @@ import { initReactI18next } from 'react-i18next'
 import * as Localization from 'expo-localization'
 import { Platform } from 'react-native'
 import { en } from './translations/en'
-import { de } from './translations/de'
-import { fr } from './translations/fr'
-import { km } from './translations/km'
-import { zh } from './translations/zh'
-import { ar } from './translations/ar'
-import { sv } from './translations/sv'
+
 import AsyncStorage from '@react-native-async-storage/async-storage'
 export const languageResources = {
   en: { translation: en },
