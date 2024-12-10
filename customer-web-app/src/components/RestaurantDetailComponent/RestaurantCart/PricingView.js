@@ -23,8 +23,8 @@ function PricingView(props) {
       const destinationObj = JSON.parse(localStorage.getItem("location"));
       const latOrigin = Number(restaurantData.location.coordinates[1]);
       const lonOrigin = Number(restaurantData.location.coordinates[0]);
-      const latDest = Number(destinationObj.latitude);
-      const longDest = Number(destinationObj.longitude);
+      const latDest = Number(destinationObj?.latitude);
+      const longDest = Number(destinationObj?.longitude);
       const distance = await calculateDistance(
         latOrigin,
         lonOrigin,

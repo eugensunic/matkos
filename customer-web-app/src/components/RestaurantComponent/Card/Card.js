@@ -116,7 +116,9 @@ function Card(props) {
   const { profile } = useContext(UserContext);
   const theme = useTheme();
   const grid = props.grid ? props.grid : false;
-  const heart = profile ? profile.favourite.includes(item?._id) : false;
+  const heart = profile && Array.isArray(profile.favourite) 
+  ? profile.favourite.includes(item?._id) 
+  : false;
   const cardImageHeight = props.cardImageHeight
     ? props.cardImageHeight
     : "144px";

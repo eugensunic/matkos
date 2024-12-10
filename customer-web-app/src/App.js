@@ -41,30 +41,30 @@ function App() {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    const initializeFirebase = async () => {
-      if (await isFirebaseSupported()) {
-        const messaging = initialize();
-        Notification.requestPermission()
-          .then(() => {
-            getToken(messaging, {
-              vapidKey: VAPID_KEY,
-            })
-              .then((token) => {
-                localStorage.setItem("messaging-token", token);
-              })
-              .catch((err) => {
-                console.log("getToken error", err);
-              });
-          })
-          .catch(console.log);
+    // const initializeFirebase = async () => {
+    //   if (await isFirebaseSupported()) {
+    //     const messaging = initialize();
+    //     Notification.requestPermission()
+    //       .then(() => {
+    //         getToken(messaging, {
+    //           vapidKey: VAPID_KEY,
+    //         })
+    //           .then((token) => {
+    //             localStorage.setItem("messaging-token", token);
+    //           })
+    //           .catch((err) => {
+    //             console.log("getToken error", err);
+    //           });
+    //       })
+    //       .catch(console.log);
 
-        onMessage(messaging, function (payload) {
-          const { title, body } = payload.notification;
-          console.log("Notification received:", title, body);
-        });
-      }
-    };
-    initializeFirebase();
+    //     onMessage(messaging, function (payload) {
+    //       const { title, body } = payload.notification;
+    //       console.log("Notification received:", title, body);
+    //     });
+    //   }
+    // };
+    // initializeFirebase();
 
     if (SENTRY_DSN) {
       Sentry.init({

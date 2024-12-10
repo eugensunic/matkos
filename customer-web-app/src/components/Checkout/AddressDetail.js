@@ -9,13 +9,13 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { GoogleMap, Marker } from "@react-google-maps/api";
+// import { GoogleMap, Marker } from "@react-google-maps/api";
 import clsx from "clsx";
 import gql from "graphql-tag";
 import React, { useCallback, useState } from "react";
 import { createAddress, editAddress } from "../../apollo/server";
 import useStyle from "./styles";
-import MarkerImage from "../../assets/images/marker.png";
+// import MarkerImage from "../../assets/images/marker.png";
 import { useTranslation } from "../../../node_modules/react-i18next";
 
 const EDIT_ADDRESS = gql`
@@ -74,7 +74,7 @@ function AddressDetail({
 
   const validateAddress = () => {
     clearErrors();
-    const detailValue = addressDetail.location;
+    const detailValue = addressDetail?.location;
     if (!detailValue) {
       setAddressError("Delivery details is required");
       return false;
@@ -100,7 +100,7 @@ function AddressDetail({
   return (
     <Grid container item xs={12} className={classes.addressBox}>
       <Grid item xs={12}>
-        <GoogleMap
+        {/* <GoogleMap
           mapContainerStyle={{ height: "200px", width: "100%" }}
           zoom={17}
           options={{
@@ -125,7 +125,7 @@ function AddressDetail({
             }}
             icon={MarkerImage}
           />
-        </GoogleMap>
+        </GoogleMap> */}
       </Grid>
       <Box
         display="flex"

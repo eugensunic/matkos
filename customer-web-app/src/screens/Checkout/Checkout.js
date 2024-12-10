@@ -138,8 +138,8 @@ function Checkout() {
       if (data && !!data.restaurant) {
         const latOrigin = Number(data.restaurant.location.coordinates[1]);
         const lonOrigin = Number(data.restaurant.location.coordinates[0]);
-        const latDest = Number(location.latitude);
-        const longDest = Number(location.longitude);
+        const latDest = Number(location?.latitude);
+        const longDest = Number(location?.longitude);
         const distance = await calculateDistance(
           latOrigin,
           lonOrigin,
@@ -482,6 +482,7 @@ function Checkout() {
       });
       return false;
     }
+    console.log(profile);
     if (profile.phone.length < 1) {
       showMessage({
         alive: true,

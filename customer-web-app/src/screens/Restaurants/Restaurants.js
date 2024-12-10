@@ -83,7 +83,7 @@ function Restaurants() {
   const toggleSnackbar = useCallback(() => {
     setMessage({});
   }, []);
-
+  console.log('went restaurants')
   const { data, loading, error } = useQuery(RESTAURANTS, {
     variables: {
       longitude: location?.longitude || null,
@@ -91,8 +91,8 @@ function Restaurants() {
       ip: null,
     },
     fetchPolicy: "network-only",
-    skip: !location,
   });
+  console.log("restaurants data", data, loading, error)
 
   if (loading || error) {
     return (
