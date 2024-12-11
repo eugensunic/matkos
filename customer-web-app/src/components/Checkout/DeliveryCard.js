@@ -77,6 +77,7 @@ function DeliveryCard({
   }, [profile]);
 
   const currentLocation = useCallback(() => {
+    console.log("Getting current location DeliveryCard", location);
     if (location)
       setAddressInfo({
         lat: location?.latitude ?? LATITUDE,
@@ -248,7 +249,7 @@ function DeliveryCard({
                               }}
                             >
                               {loadingDelete &&
-                              deleteId.current === item._id ? (
+                                deleteId.current === item._id ? (
                                 <CircularProgress size={18} color="primary" />
                               ) : (
                                 <DeleteIcon
@@ -405,7 +406,7 @@ function DeliveryCard({
                                 }}
                               >
                                 {loadingDelete &&
-                                deleteId.current === item._id ? (
+                                  deleteId.current === item._id ? (
                                   <CircularProgress size={18} color="primary" />
                                 ) : (
                                   <DustbinIcon viewBox="0 0 90 90" />

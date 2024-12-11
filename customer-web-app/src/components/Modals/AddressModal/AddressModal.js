@@ -14,13 +14,13 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
-// import { GoogleMap, Marker } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
 import clsx from "clsx";
 import React, { useCallback, useEffect, useState } from "react";
 import { useLocation } from "../../../hooks";
 import FlashMessage from "../../FlashMessage";
 import useStyle from "./styles";
-// import MarkerImage from "../../../assets/images/marker.png";
+import MarkerImage from "../../../assets/images/marker.png";
 import ClearIcon from "@mui/icons-material/Clear";
 import PlacesAutocomplete from "react-places-autocomplete";
 
@@ -38,10 +38,10 @@ function AddressModal({
   settingRegionDetail,
   setShowDetail,
 }) {
-  console.log(settingRegionDetail);
+  console.log("regionDetail",regionDetail);
 
-
-  // const { GOOGLE_MAPS_KEY } = ConfigurableValues();
+  const { GOOGLE_MAPS_KEY } = ConfigurableValues();
+  console.log("GOOGLE_MAPS_KEY", GOOGLE_MAPS_KEY);
 
   const theme = useTheme();
 
@@ -54,27 +54,29 @@ function AddressModal({
   const { latLngToGeoString } = useLocation();
   const [loading, setLoading] = useState();
   const handleLocationSelection = (selectedLocation) => {
-    // const apiKey = GOOGLE_MAPS_KEY;
+    const apiKey = GOOGLE_MAPS_KEY;
 
     setLocationName(selectedLocation);
     const encodedLocation = encodeURIComponent(selectedLocation);
 
-    // const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedLocation}&key=${apiKey}`;
-    // fetch(apiUrl)
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (data.status === "OK" && data.results.length > 0) {
-    //       const location = data.results[0].geometry.location;
-    //       const latitude = location.lat;
-    //       const longitude = location.lng;
-    //       setRegion({
-    //         lat: latitude,
-    //         lng: longitude,
-    //       });
-    //     } else {
-    //       console.error("Location not found");
-    //     }
-    //   });
+    const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedLocation}&key=${apiKey}`;
+    console.log("apiUrl: ", apiUrl);
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("data for maps: ", data);
+        if (data.status === "OK" && data.results.length > 0) {
+          const location = data.results[0].geometry.location;
+          const latitude = location.lat;
+          const longitude = location.lng;
+          setRegion({
+            lat: latitude,
+            lng: longitude,
+          });
+        } else {
+          console.error("Location not found");
+        }
+      });
   };
 
   useEffect(() => {

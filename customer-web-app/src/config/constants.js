@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import ConfigurationContext from "../context/Configuration";
 
 const ConfigurableValues = () => {
+  console.log("configurableValues");
   const configuration = useContext(ConfigurationContext);
 
   // const SERVER_URL = "https://enatega-multivendor.up.railway.app/";
@@ -11,11 +12,11 @@ const ConfigurableValues = () => {
   const WS_SERVER_URL = 'ws://localhost:8001'
 
   
-  const GOOGLE_CLIENT_ID = configuration?.webClientID;
-  const STRIPE_PUBLIC_KEY = configuration?.publishableKey;
-  const PAYPAL_KEY = configuration?.clientId;
-  const GOOGLE_MAPS_KEY = configuration?.googleApiKey;
-  const AMPLITUDE_API_KEY = configuration?.webAmplitudeApiKey;
+  const GOOGLE_CLIENT_ID = "googleclientid";
+  const STRIPE_PUBLIC_KEY = "stripekey";
+  const PAYPAL_KEY = "paypalkey";
+  const GOOGLE_MAPS_KEY = "AIzaSyAphmsPaouvviENlu4RRoUitsRWDV3NQIU"
+  const AMPLITUDE_API_KEY = "amplitudekey";
   const LIBRARIES = "places,drawing,geometry,localContext,visualization".split(
     ","
   );

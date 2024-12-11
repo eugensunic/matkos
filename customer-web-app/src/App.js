@@ -40,6 +40,21 @@ function App() {
   const { isLoggedIn } = useContext(UserContext);
   const { t, i18n } = useTranslation();
 
+  const loadGoogleMapsScript = (apiKey) => {
+    if (!document.querySelector(`script[src*="maps.googleapis.com/maps/api/js"]`)) {
+      const script = document.createElement("script");
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+    }
+  };
+
+  useEffect(() => {
+    const apiKey = "AIzaSyAphmsPaouvviENlu4RRoUitsRWDV3NQIU";
+    loadGoogleMapsScript(apiKey);
+  }, []);
+
   useEffect(() => {
     // const initializeFirebase = async () => {
     //   if (await isFirebaseSupported()) {

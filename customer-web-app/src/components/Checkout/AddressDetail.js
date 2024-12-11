@@ -74,15 +74,15 @@ function AddressDetail({
 
   const validateAddress = () => {
     clearErrors();
-    const detailValue = addressDetail?.location;
-    if (!detailValue) {
-      setAddressError("Delivery details is required");
-      return false;
-    }
-    if (!addressDetail?.lat || !addressDetail?.lng) {
-      setAddressError("Delivery address is required");
-      return false;
-    }
+    // const detailValue = addressDetail?.location;
+    // if (!detailValue) {
+    //   setAddressError("Delivery details is required");
+    //   return false;
+    // }
+    // if (!addressDetail?.lat || !addressDetail?.lng) {
+    //   setAddressError("Delivery address is required");
+    //   return false;
+    // }
     mutate({
       variables: {
         addressInput: {
