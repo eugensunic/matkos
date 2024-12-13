@@ -482,7 +482,7 @@ function Checkout() {
       });
       return false;
     }
-    console.log(profile);
+    console.log("profile here", profile);
     if (profile.phone.length < 1) {
       showMessage({
         alive: true,

@@ -50,6 +50,7 @@ function PhoneNumber() {
   });
 
   async function onCompleted({ phoneExist }) {
+    console.log("phone exists",phoneExist);
     if (phoneExist?._id !== null) {
       setError("Phone number already associated with some other user");
       setLoading(false); // Turn off loading animation if an error occurs
